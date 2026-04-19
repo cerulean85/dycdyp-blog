@@ -1,0 +1,221 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PostStatus {
+  DRAFT     @map("draft")
+  REVIEW    @map("review")
+  APPROVED  @map("approved")
+  PUBLISHED @map("published")
+}
+
+enum CategoryRoot {
+  INVESTMENT @map("investment")
+  AI         @map("ai")
+  CULTURE    @map("culture")
+  HUMANITIES @map("humanities")
+}
+
+enum CategoryLeaf {
+  STOCK      @map("stock")
+  ECONOMY    @map("economy")
+  NEWS       @map("news")
+  TOOLS      @map("tools")
+  RESEARCH   @map("research")
+  ETHICS     @map("ethics")
+  BOOKS      @map("books")
+  FILM       @map("film")
+  TRAVEL     @map("travel")
+  LIFESTYLE  @map("lifestyle")
+  PHILOSOPHY @map("philosophy")
+  HISTORY    @map("history")
+  PSYCHOLOGY @map("psychology")
+  ESSAY      @map("essay")
+}
+
+enum AuthorType {
+  AI_DRAFT     @map("ai_draft")
+  HUMAN_EDITED @map("human_edited")
+}
+
+enum RevisionSourceType {
+  AI_DRAFT          @map("ai_draft")
+  HUMAN_EDIT        @map("human_edit")
+  APPROVAL_SNAPSHOT @map("approval_snapshot")
+  PUBLISH_SNAPSHOT  @map("publish_snapshot")
+}
+
+enum AdminRole {
+  EDITOR @map("editor")
+  ADMIN  @map("admin")
+}
+
+enum MediaStorageProvider {
+  S3 @map("s3")
+}
+
+enum PublishEventType {
+  CREATED              @map("created")
+  SUBMITTED_FOR_REVIEW @map("submitted_for_review")
+  APPROVED             @map("approved")
+  PUBLISHED            @map("published")
+  UNPUBLISHED          @map("unpublished")
+}
+
+model Post {
+  id                  String       @id @default(uuid()) @db.Uuid
+  slug                String       @unique
+  title               String
+  excerpt             String
+  categoryRoot        CategoryRoot @map("category_root")
+  categoryLeaf        CategoryLeaf @map("category_leaf")
+  status              PostStatus
+  authorType          AuthorType   @map("author_type")
+  thumbnailAssetId    String?      @map("thumbnail_asset_id") @db.Uuid
+  readingTimeMinutes  Int          @default(0) @map("reading_time_minutes")
+  currentRevisionId   String?      @unique @map("current_revision_id") @db.Uuid
+  publishedRevisionId String?      @unique @map("published_revision_id") @db.Uuid
+  createdById         String?      @map("created_by") @db.Uuid
+  updatedById         String?      @map("updated_by") @db.Uuid
+  approvedById        String?      @map("approved_by") @db.Uuid
+  publishedAt         DateTime?    @map("published_at") @db.Timestamptz(6)
+  approvedAt          DateTime?    @map("approved_at") @db.Timestamptz(6)
+  createdAt           DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt           DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  revisions         PostRevision[] @relation("PostRevisions")
+  currentRevision   PostRevision?  @relation("CurrentRevision", fields: [currentRevisionId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  publishedRevision PostRevision?  @relation("PublishedRevision", fields: [publishedRevisionId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  thumbnailAsset    MediaAsset?    @relation("PostThumbnail", fields: [thumbnailAssetId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  createdBy         AdminUser?     @relation("PostsCreated", fields: [createdById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  updatedBy         AdminUser?     @relation("PostsUpdated", fields: [updatedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  approvedBy        AdminUser?     @relation("PostsApproved", fields: [approvedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  tags              PostTag[]
+  publishEvents     PublishEvent[]
+
+  @@index([status, updatedAt(sort: Desc)])
+  @@index([categoryRoot, categoryLeaf, publishedAt(sort: Desc)])
+  @@map("posts")
+}
+
+model PostRevision {
+  id           String             @id @default(uuid()) @db.Uuid
+  postId       String             @map("post_id") @db.Uuid
+  title        String
+  excerpt      String
+  markdownBody String             @map("markdown_body")
+  frontmatter  Json               @default("{}")
+  revisionNote String?            @map("revision_note")
+  sourceType   RevisionSourceType @map("source_type")
+  sourceModel  String?            @map("source_model")
+  editorId     String?            @map("editor_id") @db.Uuid
+  createdAt    DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  post             Post           @relation("PostRevisions", fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  editor           AdminUser?     @relation("RevisionsEdited", fields: [editorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  currentForPost   Post?          @relation("CurrentRevision")
+  publishedForPost Post?          @relation("PublishedRevision")
+  publishEvents    PublishEvent[]
+
+  @@index([postId, createdAt(sort: Desc)])
+  @@map("post_revisions")
+}
+
+model MediaAsset {
+  id                 String               @id @default(uuid()) @db.Uuid
+  storageProvider    MediaStorageProvider @default(S3) @map("storage_provider")
+  bucketName         String               @map("bucket_name")
+  objectKey          String               @unique @map("object_key")
+  publicUrl          String?              @map("public_url")
+  mimeType           String               @map("mime_type")
+  fileSizeBytes      BigInt?              @map("file_size_bytes")
+  width              Int?
+  height             Int?
+  altText            String?              @map("alt_text")
+  uploadedById       String?              @map("uploaded_by") @db.Uuid
+  createdAt          DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  uploadedBy         AdminUser?           @relation("AssetsUploaded", fields: [uploadedById], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  thumbnailsForPosts Post[]               @relation("PostThumbnail")
+
+  @@map("media_assets")
+}
+
+model Tag {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  posts PostTag[]
+
+  @@index([slug])
+  @@map("tags")
+}
+
+model PostTag {
+  postId    String   @map("post_id") @db.Uuid
+  tagId     String   @map("tag_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([postId, tagId])
+  @@map("post_tags")
+}
+
+model AdminUser {
+  id          String     @id @default(uuid()) @db.Uuid
+  email       String     @unique
+  displayName String?    @map("display_name")
+  role        AdminRole  @default(EDITOR)
+  createdAt   DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  lastLoginAt DateTime?  @map("last_login_at") @db.Timestamptz(6)
+
+  createdPosts   Post[]         @relation("PostsCreated")
+  updatedPosts   Post[]         @relation("PostsUpdated")
+  approvedPosts  Post[]         @relation("PostsApproved")
+  editedRevisions PostRevision[] @relation("RevisionsEdited")
+  uploadedAssets MediaAsset[]   @relation("AssetsUploaded")
+  publishEvents  PublishEvent[] @relation("PublishEventsByActor")
+
+  @@map("admin_users")
+}
+
+model NewsletterSubscriber {
+  id            String    @id @default(uuid()) @db.Uuid
+  email         String    @unique
+  source        String    @default("site_newsletter")
+  blockedAt     DateTime? @map("blocked_at") @db.Timestamptz(6)
+  blockedReason String?   @map("blocked_reason")
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([createdAt(sort: Desc)])
+  @@index([blockedAt])
+  @@map("newsletter_subscribers")
+}
+
+model PublishEvent {
+  id         String           @id @default(uuid()) @db.Uuid
+  postId     String           @map("post_id") @db.Uuid
+  revisionId String?          @map("revision_id") @db.Uuid
+  eventType  PublishEventType @map("event_type")
+  actorId    String?          @map("actor_id") @db.Uuid
+  payload    Json             @default("{}")
+  createdAt  DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  post     Post          @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  revision PostRevision? @relation(fields: [revisionId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  actor    AdminUser?    @relation("PublishEventsByActor", fields: [actorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  @@index([postId, createdAt(sort: Desc)])
+  @@map("publish_events")
+}
