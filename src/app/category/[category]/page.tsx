@@ -122,7 +122,7 @@ export default async function CategoryPage({
       <div className="mb-5 md:mb-6">
         <Link
           href="/category"
-          className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm text-stone-700 transition hover:border-stone-950 hover:text-stone-950"
+          className="public-button-secondary inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm text-stone-700 transition hover:border-stone-950 hover:text-stone-950"
         >
           <span aria-hidden="true">←</span>
           <span>전체 카테고리로 돌아가기</span>
@@ -134,7 +134,7 @@ export default async function CategoryPage({
         description={`${definition.description} 현재 공개된 글 ${totalPostsCount}개를 최신 순으로 볼 수 있습니다.`}
       />
       <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-stone-500">
-        <Link href="/category" className="hover:text-stone-950">
+        <Link href="/category" className="public-link-strong hover:text-stone-950">
           카테고리 전체
         </Link>
         <span>·</span>
@@ -151,13 +151,13 @@ export default async function CategoryPage({
           <Link
             key={leaf.slug}
             href={`/category/${definition.root}/${leaf.slug}`}
-            className="rounded-full border border-stone-300 px-3.5 py-2 text-sm text-stone-700 transition hover:border-stone-950 hover:text-stone-950 md:px-4"
+            className="public-button-secondary rounded-full border border-stone-300 px-3.5 py-2 text-sm text-stone-700 transition hover:border-stone-950 hover:text-stone-950 md:px-4"
           >
             {leaf.label}
           </Link>
         ))}
       </div>
-      <form className="mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.12)] md:p-6">
+      <form className="public-panel mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.12)] md:p-6">
         <label className="block">
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500">
             이 카테고리 안에서 검색
@@ -168,13 +168,13 @@ export default async function CategoryPage({
               name="q"
               defaultValue={query}
               placeholder="제목, 요약, 태그로 찾기"
-              className="min-w-0 flex-1 rounded-[1.5rem] border border-black/10 bg-stone-50 px-5 py-4 text-[0.95rem] text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-stone-950 focus:bg-white"
+              className="public-input min-w-0 flex-1 rounded-[1.5rem] border border-black/10 bg-stone-50 px-5 py-4 text-[0.95rem] text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-stone-950 focus:bg-white"
             />
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-stretch lg:flex-nowrap">
               <select
                 name="sort"
                 defaultValue={sort}
-                className="admin-select min-h-[3.5rem] w-full rounded-[1.25rem] border border-black/10 bg-stone-50 px-5 py-4 pr-12 text-[0.95rem] text-stone-900 outline-none transition focus:border-stone-950 focus:bg-white sm:min-h-[3.75rem] sm:min-w-[9rem] sm:w-auto sm:rounded-[1.5rem]"
+                className="admin-select public-select min-h-[3.5rem] w-full rounded-[1.25rem] border border-black/10 bg-stone-50 px-5 py-4 pr-12 text-[0.95rem] text-stone-900 outline-none transition focus:border-stone-950 focus:bg-white sm:min-h-[3.75rem] sm:min-w-[9rem] sm:w-auto sm:rounded-[1.5rem]"
               >
                 {publicSortOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -184,14 +184,14 @@ export default async function CategoryPage({
               </select>
               <button
                 type="submit"
-                className="inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] bg-stone-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-stone-800 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
+                className="public-button-primary inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] bg-stone-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-stone-800 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
               >
                 검색
               </button>
               {query ? (
                 <Link
                   href={`/category/${definition.root}`}
-                  className="inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] border border-black/10 bg-stone-50 px-6 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:bg-white hover:text-stone-950 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
+                  className="public-button-secondary inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] border border-black/10 bg-stone-50 px-6 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:bg-white hover:text-stone-950 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
                 >
                   초기화
                 </Link>
@@ -213,7 +213,7 @@ export default async function CategoryPage({
           </p>
         )}
       </form>
-      <div className="mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.22)] md:mt-10 md:p-6">
+      <div className="public-panel mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.22)] md:mt-10 md:p-6">
         {posts.length > 0 ? (
           posts.map((post) => (
             <PostListItem
@@ -223,7 +223,7 @@ export default async function CategoryPage({
             />
           ))
         ) : (
-          <div className="rounded-[2rem] border border-dashed border-stone-300 bg-stone-50 p-8 text-sm leading-7 text-stone-600">
+          <div className="public-empty-state rounded-[2rem] border border-dashed border-stone-300 bg-stone-50 p-8 text-sm leading-7 text-stone-600">
             현재 검색어와 일치하는 글이 없습니다. 다른 키워드로 다시 찾거나{" "}
             <Link
               href={`/category/${definition.root}`}

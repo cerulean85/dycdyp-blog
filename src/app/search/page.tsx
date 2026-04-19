@@ -70,7 +70,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         description="제목, 요약, 태그, 카테고리 기준으로 공개된 글을 한 번에 찾을 수 있습니다."
       />
 
-      <form className="mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.12)] md:mt-10 md:p-6">
+      <form className="public-panel mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.12)] md:mt-10 md:p-6">
         <label className="block">
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500">
             검색어 입력
@@ -81,13 +81,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               name="q"
               defaultValue={query}
               placeholder="제목, 요약, 태그, 카테고리로 찾기"
-              className="min-w-0 flex-1 rounded-[1.5rem] border border-black/10 bg-stone-50 px-5 py-4 text-[0.95rem] text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-stone-950 focus:bg-white"
+              className="public-input min-w-0 flex-1 rounded-[1.5rem] border border-black/10 bg-stone-50 px-5 py-4 text-[0.95rem] text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-stone-950 focus:bg-white"
             />
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-stretch lg:flex-nowrap">
               <select
                 name="sort"
                 defaultValue={sort}
-                className="admin-select min-h-[3.5rem] w-full rounded-[1.25rem] border border-black/10 bg-stone-50 px-5 py-4 pr-12 text-[0.95rem] text-stone-900 outline-none transition focus:border-stone-950 focus:bg-white sm:min-h-[3.75rem] sm:min-w-[9rem] sm:w-auto sm:rounded-[1.5rem]"
+                className="admin-select public-select min-h-[3.5rem] w-full rounded-[1.25rem] border border-black/10 bg-stone-50 px-5 py-4 pr-12 text-[0.95rem] text-stone-900 outline-none transition focus:border-stone-950 focus:bg-white sm:min-h-[3.75rem] sm:min-w-[9rem] sm:w-auto sm:rounded-[1.5rem]"
               >
                 {publicSortOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -97,14 +97,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               </select>
               <button
                 type="submit"
-                className="inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] bg-stone-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-stone-800 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
+                className="public-button-primary inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] bg-stone-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-stone-800 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
               >
                 검색
               </button>
               {query ? (
                 <Link
                   href="/search"
-                  className="inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] border border-black/10 bg-stone-50 px-6 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:bg-white hover:text-stone-950 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
+                  className="public-button-secondary inline-flex min-h-[3.5rem] w-full items-center justify-center rounded-[1.25rem] border border-black/10 bg-stone-50 px-6 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-950 hover:bg-white hover:text-stone-950 sm:min-h-[3.75rem] sm:min-w-[6.5rem] sm:w-auto sm:rounded-[1.5rem]"
                 >
                   초기화
                 </Link>
@@ -127,14 +127,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         )}
       </form>
 
-      <div className="mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.22)] md:mt-10 md:p-6">
+      <div className="public-panel mt-8 rounded-[2rem] border border-black/10 bg-white p-5 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.22)] md:mt-10 md:p-6">
         {query ? (
           result.posts.length > 0 ? (
             result.posts.map((post) => (
               <PostListItem key={post.id} post={post} highlightQuery={query} />
             ))
           ) : (
-            <div className="rounded-[2rem] border border-dashed border-stone-300 bg-stone-50 p-8 text-sm leading-7 text-stone-600">
+            <div className="public-empty-state rounded-[2rem] border border-dashed border-stone-300 bg-stone-50 p-8 text-sm leading-7 text-stone-600">
               현재 검색어와 일치하는 글이 없습니다. 다른 키워드로 다시 찾거나{" "}
               <Link href="/search" className="underline underline-offset-4">
                 검색 초기화
@@ -143,7 +143,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             </div>
           )
         ) : (
-          <div className="rounded-[2rem] border border-dashed border-stone-300 bg-stone-50 p-8 text-sm leading-7 text-stone-600">
+          <div className="public-empty-state rounded-[2rem] border border-dashed border-stone-300 bg-stone-50 p-8 text-sm leading-7 text-stone-600">
             검색어를 입력하면 공개된 글 전체에서 관련 글을 목록으로 보여드립니다.
           </div>
         )}

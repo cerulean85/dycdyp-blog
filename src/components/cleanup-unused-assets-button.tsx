@@ -85,21 +85,21 @@ export function CleanupUnusedAssetsButton({
         type="button"
         onClick={() => void handleClick()}
         disabled={!count || isLoading}
-        className="rounded-full border border-red-400/20 bg-red-500/10 px-4 py-2 text-sm text-red-100 transition hover:border-red-300/40 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-full border border-red-400/35 bg-red-500/8 px-4 py-2 text-sm text-red-700 transition hover:border-red-500/45 hover:bg-red-500/12 disabled:cursor-not-allowed disabled:opacity-50 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-100 dark:hover:border-red-300/40 dark:hover:bg-red-500/14"
       >
         {isLoading ? "정리 중..." : `미사용 자산 ${count}개 정리`}
       </button>
-      <p className="text-xs leading-5 text-stone-500">
+      <p className="text-xs leading-5 text-stone-500 dark:text-stone-500">
         현재 필터 기준의 미사용 자산만 정리합니다. 삭제 시 S3 파일과 DB
         레코드가 함께 제거됩니다.
       </p>
       {message ? (
-        <div className="rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-3 py-2 text-xs leading-5 text-emerald-200">
+        <div className="rounded-2xl border border-emerald-400/35 bg-emerald-500/8 px-3 py-2 text-xs leading-5 text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-500/10 dark:text-emerald-200">
           {message}
         </div>
       ) : null}
       {error ? (
-        <div className="rounded-2xl border border-red-400/20 bg-red-500/10 px-3 py-2 text-xs leading-5 text-red-200">
+        <div className="rounded-2xl border border-red-400/35 bg-red-500/8 px-3 py-2 text-xs leading-5 text-red-700 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-200">
           {error}
         </div>
       ) : null}

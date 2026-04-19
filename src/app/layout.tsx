@@ -3,6 +3,7 @@ import { Noto_Serif_KR, Space_Grotesk } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ThemeScript } from "@/components/theme-script";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 import "./globals.css";
@@ -81,7 +82,8 @@ export default function RootLayout({
       lang="ko"
       className={`${display.variable} ${serif.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#f7f1e8] text-stone-950">
+      <body className="min-h-full bg-background text-foreground transition-colors duration-200">
+        <ThemeScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

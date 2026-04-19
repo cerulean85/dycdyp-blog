@@ -9,7 +9,7 @@ type NewsletterSignupFormProps = {
   buttonLabel?: string;
   inputPlaceholder?: string;
   layout?: "stack" | "inline";
-  tone?: "light" | "dark";
+  tone?: "light" | "dark" | "adaptive";
 };
 
 const statusCopy = {
@@ -35,11 +35,15 @@ export function NewsletterSignupForm({
       : null;
 
   const inputClassName =
-    tone === "dark"
+    tone === "adaptive"
+      ? "newsletter-signup-input min-w-0 flex-1 rounded-[1.5rem] px-4 py-3 text-sm outline-none transition"
+      : tone === "dark"
       ? "min-w-0 flex-1 rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-stone-500 focus:border-white/30 focus:bg-white/10"
       : "min-w-0 flex-1 rounded-[1.5rem] border border-black/10 bg-stone-50 px-4 py-3 text-sm text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-stone-950 focus:bg-white";
   const buttonClassName =
-    tone === "dark"
+    tone === "adaptive"
+      ? "newsletter-signup-button inline-flex min-h-[3rem] items-center justify-center rounded-[1.5rem] px-5 py-3 text-sm font-medium transition"
+      : tone === "dark"
       ? "inline-flex min-h-[3rem] items-center justify-center rounded-[1.5rem] bg-white px-5 py-3 text-sm font-medium text-stone-950 transition hover:bg-stone-200"
       : "inline-flex min-h-[3rem] items-center justify-center rounded-[1.5rem] bg-stone-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-stone-800";
 
@@ -63,7 +67,9 @@ export function NewsletterSignupForm({
       {feedback ? (
         <p
           className={
-            tone === "dark"
+            tone === "adaptive"
+              ? "newsletter-signup-feedback sm:basis-full text-xs"
+              : tone === "dark"
               ? "sm:basis-full text-xs text-stone-400"
               : "sm:basis-full text-xs text-stone-500"
           }

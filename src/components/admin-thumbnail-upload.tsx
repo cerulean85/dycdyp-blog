@@ -67,11 +67,11 @@ export function AdminThumbnailUpload({
   }
 
   return (
-    <div className="mt-5 rounded-[1.5rem] border border-white/10 bg-black/20 p-4">
+    <div className="mt-5 rounded-[1.5rem] border border-stone-300/70 bg-white p-4 dark:border-white/10 dark:bg-black/20">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-white">썸네일 업로드</p>
-          <p className="mt-1 text-xs leading-6 text-stone-400">
+          <p className="text-sm font-medium text-stone-950 dark:text-white">썸네일 업로드</p>
+          <p className="mt-1 text-xs leading-6 text-stone-500 dark:text-stone-400">
             S3에 업로드한 뒤 `media_assets`에 메타데이터를 저장합니다.
           </p>
         </div>
@@ -79,7 +79,7 @@ export function AdminThumbnailUpload({
           type="button"
           onClick={() => fileInputRef.current?.click()}
           disabled={isUploading}
-          className="rounded-full border border-white/15 px-4 py-2 text-xs text-stone-100 transition hover:border-white/35 disabled:cursor-wait disabled:opacity-60"
+          className="rounded-full border border-stone-300/70 bg-white px-4 py-2 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-wait disabled:opacity-60 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
         >
           {isUploading ? "업로드 중..." : "썸네일 업로드"}
         </button>
@@ -103,7 +103,7 @@ export function AdminThumbnailUpload({
         </div>
       ) : null}
       {error ? (
-        <p className="mt-3 text-xs text-red-300">{error}</p>
+        <p className="mt-3 text-xs text-red-600 dark:text-red-300">{error}</p>
       ) : null}
       <AdminAssetPicker
         initialAssets={availableAssetPage.items}

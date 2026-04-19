@@ -277,12 +277,12 @@ export function TiptapMarkdownEditor({
             key={button.label}
             type="button"
             onClick={() => handleToolbarAction(button.action)}
-            className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-stone-200 transition hover:border-white/25"
+            className="rounded-full border border-stone-300/70 bg-white px-3 py-1.5 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 dark:border-white/10 dark:bg-white/5 dark:text-stone-200 dark:hover:border-white/25 dark:hover:bg-white/8"
           >
             {button.label}
           </button>
         ))}
-        <label className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-stone-200 transition hover:border-white/25">
+        <label className="rounded-full border border-stone-300/70 bg-white px-3 py-1.5 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 dark:border-white/10 dark:bg-white/5 dark:text-stone-200 dark:hover:border-white/25 dark:hover:bg-white/8">
           {isUploading ? "![이미지] 업로드 중..." : "![이미지]"}
           <input
             type="file"
@@ -310,10 +310,10 @@ export function TiptapMarkdownEditor({
             value={markdown}
             onChange={(event) => updateMarkdown(event.target.value)}
             spellCheck={false}
-            className="min-h-[420px] w-full rounded-[1.5rem] border border-white/10 bg-black/30 px-4 py-4 font-mono text-sm leading-7 text-stone-100 outline-none transition focus:border-amber-300"
+            className="min-h-[420px] w-full rounded-[1.5rem] border border-stone-300/70 bg-stone-100 px-4 py-4 font-mono text-sm leading-7 text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/30 dark:text-stone-100"
           />
           {uploadError ? (
-            <p className="mt-3 text-xs text-red-300">{uploadError}</p>
+            <p className="mt-3 text-xs text-red-600 dark:text-red-300">{uploadError}</p>
           ) : null}
           <AdminAssetPicker
             initialAssets={availableAssetPage.items}
@@ -331,21 +331,21 @@ export function TiptapMarkdownEditor({
             }}
           />
         </div>
-        <section className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+        <section className="rounded-[1.5rem] border border-stone-300/70 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-[0.25em] text-stone-400">
                 Preview
               </p>
-              <h4 className="mt-2 font-serif text-2xl text-white">
+              <h4 className="mt-2 font-serif text-2xl text-stone-950 dark:text-white">
                 게시 전 미리보기
               </h4>
             </div>
-            <span className="rounded-full border border-emerald-300/20 bg-emerald-400/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-emerald-100">
+            <span className="rounded-full border border-emerald-400/35 bg-emerald-500/8 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-emerald-700 dark:border-emerald-300/20 dark:bg-emerald-400/10 dark:text-emerald-100">
               Live
             </span>
           </div>
-          <p className="mt-3 text-sm leading-7 text-stone-400">
+          <p className="mt-3 text-sm leading-7 text-stone-600 dark:text-stone-400">
             왼쪽에서는 Markdown 문법 자체를 편집하고, 아래에서는 공개 화면과
             같은 렌더 결과를 바로 확인합니다.
           </p>

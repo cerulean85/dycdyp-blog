@@ -28,7 +28,7 @@ export function PublicBreadcrumbs({
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="transition hover:text-stone-950"
+                  className="public-breadcrumb-link transition hover:text-stone-950"
                 >
                   {item.label}
                 </Link>

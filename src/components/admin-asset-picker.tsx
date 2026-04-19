@@ -238,11 +238,11 @@ export function AdminAssetPicker({
   }, [isImageModalOpen, movePreview]);
 
   return (
-    <div className="mt-5 rounded-[1.5rem] border border-white/10 bg-black/20 p-4">
+    <div className="mt-5 rounded-[1.5rem] border border-stone-300/70 bg-stone-100/80 p-4 dark:border-white/10 dark:bg-black/20">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-white">{title}</p>
-          <p className="mt-1 text-xs leading-6 text-stone-400">{description}</p>
+          <p className="text-sm font-medium text-stone-950 dark:text-white">{title}</p>
+          <p className="mt-1 text-xs leading-6 text-stone-500 dark:text-stone-400">{description}</p>
         </div>
         <div className="w-full max-w-xs">
           <div className="flex gap-2">
@@ -251,13 +251,13 @@ export function AdminAssetPicker({
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="alt 텍스트, key, 업로더 검색"
-              className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-300"
+              className="w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
             />
             <button
               type="button"
               onClick={() => fetchAssets(1, query)}
               disabled={isLoading}
-              className="rounded-full border border-white/15 px-4 py-3 text-xs text-stone-100 transition hover:border-white/35 disabled:cursor-wait disabled:opacity-60"
+              className="rounded-full border border-stone-300/70 bg-white px-4 py-3 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-wait disabled:opacity-60 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
             >
               검색
             </button>
@@ -273,7 +273,7 @@ export function AdminAssetPicker({
           <select
             value={mimeType}
             onChange={(event) => setMimeType(event.target.value)}
-            className="admin-select admin-select-sm w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-2.5 text-xs text-white outline-none transition focus:border-amber-300"
+            className="admin-select admin-select-sm w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-2.5 text-xs text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
           >
             <option value="">전체</option>
             {mimeTypeOptions.map((entry) => (
@@ -290,7 +290,7 @@ export function AdminAssetPicker({
           <select
             value={sort}
             onChange={(event) => setSort(event.target.value as typeof initialSort)}
-            className="admin-select admin-select-sm w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-2.5 text-xs text-white outline-none transition focus:border-amber-300"
+            className="admin-select admin-select-sm w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-2.5 text-xs text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
           >
             <option value="created_desc">최신순</option>
             <option value="created_asc">오래된순</option>
@@ -299,7 +299,7 @@ export function AdminAssetPicker({
           </select>
         </label>
         {kind !== "load_test" ? (
-          <label className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-stone-200">
+          <label className="inline-flex items-center gap-2 rounded-full border border-stone-300/70 bg-white px-4 py-2 text-xs text-stone-700 dark:border-white/10 dark:bg-white/5 dark:text-stone-200">
             <input
               type="checkbox"
               checked={hideLoadTest}
@@ -317,33 +317,33 @@ export function AdminAssetPicker({
           type="button"
           onClick={() => fetchAssets(1, query, mimeType, sort)}
           disabled={isLoading}
-          className="rounded-full border border-white/15 px-4 py-2 text-xs text-stone-100 transition hover:border-white/35 disabled:cursor-wait disabled:opacity-60"
+          className="rounded-full border border-stone-300/70 bg-white px-4 py-2 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-wait disabled:opacity-60 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
         >
           필터 반영
         </button>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-400">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500 dark:text-stone-400">
         <p>
-          페이지 <span className="text-white">{currentPage}</span> /{" "}
-          <span className="text-white">{totalPages}</span>
+          페이지 <span className="text-stone-900 dark:text-white">{currentPage}</span> /{" "}
+          <span className="text-stone-900 dark:text-white">{totalPages}</span>
           {submittedQuery ? (
             <>
               {" "}
-              · 검색어 <span className="text-white">{submittedQuery}</span>
+              · 검색어 <span className="text-stone-900 dark:text-white">{submittedQuery}</span>
             </>
           ) : null}
           {mimeType ? (
             <>
               {" "}
-              · MIME <span className="text-white">{mimeType}</span>
+              · MIME <span className="text-stone-900 dark:text-white">{mimeType}</span>
             </>
           ) : null}
           {sort !== "created_desc" ? (
             <>
               {" "}
               · 정렬{" "}
-              <span className="text-white">
+              <span className="text-stone-900 dark:text-white">
                 {sort === "created_asc"
                   ? "오래된순"
                   : sort === "alt_asc"
@@ -355,7 +355,7 @@ export function AdminAssetPicker({
           {kind !== "load_test" && hideLoadTest ? (
             <>
               {" "}
-              · <span className="text-white">LOAD TEST 숨김</span>
+              · <span className="text-stone-900 dark:text-white">LOAD TEST 숨김</span>
             </>
           ) : null}
         </p>
@@ -364,7 +364,7 @@ export function AdminAssetPicker({
             type="button"
             onClick={() => fetchAssets(currentPage - 1, submittedQuery, mimeType, sort)}
             disabled={isLoading || currentPage <= 1}
-            className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-stone-200 transition hover:border-white/35 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-full border border-stone-300/70 bg-white px-3 py-1.5 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:bg-transparent dark:text-stone-200 dark:hover:border-white/35 dark:hover:bg-white/5"
           >
             이전
           </button>
@@ -372,7 +372,7 @@ export function AdminAssetPicker({
             type="button"
             onClick={() => fetchAssets(currentPage + 1, submittedQuery, mimeType, sort)}
             disabled={isLoading || currentPage >= totalPages}
-            className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-stone-200 transition hover:border-white/35 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-full border border-stone-300/70 bg-white px-3 py-1.5 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:bg-transparent dark:text-stone-200 dark:hover:border-white/35 dark:hover:bg-white/5"
           >
             다음
           </button>
@@ -380,11 +380,11 @@ export function AdminAssetPicker({
       </div>
 
       {error ? (
-        <p className="mt-4 text-xs text-red-300">{error}</p>
+        <p className="mt-4 text-xs text-red-600 dark:text-red-300">{error}</p>
       ) : null}
 
       {previewAsset ? (
-        <section className="mt-4 max-w-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5">
+        <section className="mt-4 max-w-full overflow-hidden rounded-[1.5rem] border border-stone-300/70 bg-white shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">
           <button
             type="button"
             onClick={() => setIsPreviewOpen((current) => !current)}
@@ -395,13 +395,13 @@ export function AdminAssetPicker({
               <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
                 Asset Preview
               </p>
-              <p className="mt-2 text-sm text-white">
+              <p className="mt-2 text-sm text-stone-950 dark:text-white">
                 {previewAsset.altText || previewAsset.objectKey}
               </p>
             </div>
             <CollapseToggleChip isOpen={isPreviewOpen} />
           </button>
-          <div hidden={!isPreviewOpen} className="border-t border-white/10">
+          <div hidden={!isPreviewOpen} className="border-t border-stone-300/70 dark:border-white/10">
           <div className="grid max-w-full gap-0">
             <div className="min-w-0 overflow-hidden bg-black/30">
               {previewAsset.publicUrl ? (
@@ -425,16 +425,16 @@ export function AdminAssetPicker({
                 </div>
               )}
             </div>
-            <div className="min-w-0 max-w-full space-y-4 overflow-hidden border-t border-white/10 p-5">
+            <div className="min-w-0 max-w-full space-y-4 overflow-hidden border-t border-stone-300/70 p-5 dark:border-white/10">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-300">
+                <span className="rounded-full border border-stone-300/70 bg-white px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-600 dark:border-white/10 dark:bg-white/5 dark:text-stone-300">
                   {previewAsset.mimeType}
                 </span>
                 <span
                   className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.2em] ${
                     previewAsset.assetKind === "load_test"
-                      ? "border border-amber-300/20 bg-amber-400/10 text-amber-100"
-                      : "border border-emerald-400/20 bg-emerald-500/10 text-emerald-100"
+                      ? "border border-amber-300/60 bg-amber-100/80 text-amber-900 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-100"
+                      : "border border-emerald-400/35 bg-emerald-500/8 text-emerald-800 dark:border-emerald-400/20 dark:bg-emerald-500/10 dark:text-emerald-100"
                   }`}
                 >
                   {previewAsset.assetKind === "load_test" ? "LOAD TEST" : "UPLOADED"}
@@ -451,13 +451,13 @@ export function AdminAssetPicker({
                     value={altTextDraft}
                     onChange={(event) => setAltTextDraft(event.target.value)}
                     placeholder="이미지 설명을 입력하세요"
-                    className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-300"
+                    className="w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
                   />
                   <button
                     type="button"
                     onClick={() => void saveAltText()}
                     disabled={isSavingAltText}
-                    className="shrink-0 rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-stone-100 transition hover:border-white/35 hover:bg-white/5 disabled:cursor-wait disabled:opacity-60"
+                    className="shrink-0 rounded-2xl border border-stone-300/70 bg-white px-5 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-wait disabled:opacity-60 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
                   >
                     {isSavingAltText ? "저장 중..." : "저장"}
                   </button>
@@ -475,19 +475,19 @@ export function AdminAssetPicker({
                 <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
                   Uploaded By
                 </p>
-                <p className="mt-2 text-sm text-stone-300">
+                <p className="mt-2 text-sm text-stone-700 dark:text-stone-300">
                   {previewAsset.uploaderDisplay || previewAsset.uploaderEmail}
                 </p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <div className="rounded-2xl border border-stone-300/70 bg-white p-4 dark:border-white/10 dark:bg-black/20">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-white">
+                  <span className="rounded-full border border-stone-300/70 bg-white px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-700 dark:border-white/10 dark:bg-white/10 dark:text-white">
                     Usage
                   </span>
-                  <span className="text-xs text-stone-300">
+                  <span className="text-xs text-stone-700 dark:text-stone-300">
                     썸네일 {previewAsset.thumbnailUsageCount}건
                   </span>
-                  <span className="text-xs text-stone-300">
+                  <span className="text-xs text-stone-700 dark:text-stone-300">
                     본문 {previewAsset.bodyUsageCount}건
                   </span>
                 </div>
@@ -578,7 +578,7 @@ export function AdminAssetPicker({
                 <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
                   Image Preview
                 </p>
-                <p className="mt-1 text-sm text-white">
+                <p className="mt-1 text-sm text-stone-950 dark:text-white">
                   {previewAsset.altText || previewAsset.objectKey}
                 </p>
               </div>
@@ -587,7 +587,7 @@ export function AdminAssetPicker({
                   type="button"
                   onClick={() => movePreview("previous")}
                   disabled={!previousPreviewAsset}
-                  className="rounded-full border border-white/15 px-4 py-2 text-xs text-stone-100 transition hover:border-white/35 disabled:cursor-not-allowed disabled:opacity-40"
+                  className="rounded-full border border-stone-300/70 bg-white px-4 py-2 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
                 >
                   이전 이미지
                 </button>
@@ -595,14 +595,14 @@ export function AdminAssetPicker({
                   type="button"
                   onClick={() => movePreview("next")}
                   disabled={!nextPreviewAsset}
-                  className="rounded-full border border-white/15 px-4 py-2 text-xs text-stone-100 transition hover:border-white/35 disabled:cursor-not-allowed disabled:opacity-40"
+                  className="rounded-full border border-stone-300/70 bg-white px-4 py-2 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
                 >
                   다음 이미지
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsImageModalOpen(false)}
-                  className="rounded-full border border-white/15 px-4 py-2 text-xs text-stone-100 transition hover:border-white/35"
+                  className="rounded-full border border-stone-300/70 bg-white px-4 py-2 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
                 >
                   닫기
                 </button>
@@ -634,10 +634,10 @@ export function AdminAssetPicker({
           {assets.map((asset) => (
             <article
               key={asset.id}
-              className={`overflow-hidden rounded-2xl border bg-white/5 transition ${
+              className={`overflow-hidden rounded-2xl border bg-white shadow-sm transition dark:bg-white/5 dark:shadow-none ${
                 previewAsset?.id === asset.id
-                  ? "border-amber-300/35 ring-1 ring-amber-300/20"
-                  : "border-white/10"
+                  ? "border-amber-300/60 ring-1 ring-amber-300/20 dark:border-amber-300/35"
+                  : "border-stone-300/70 dark:border-white/10"
               }`}
             >
               <button
@@ -663,21 +663,21 @@ export function AdminAssetPicker({
               </button>
               <div className="grid min-h-[214px] grid-rows-[auto_minmax(88px,1fr)_auto] gap-3 p-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-300">
+                  <span className="rounded-full border border-stone-300/70 bg-white px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-600 dark:border-white/10 dark:bg-white/5 dark:text-stone-300">
                     {asset.mimeType}
                   </span>
                   <span
                     className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.2em] ${
                       asset.assetKind === "load_test"
-                        ? "border border-amber-300/20 bg-amber-400/10 text-amber-100"
-                        : "border border-emerald-400/20 bg-emerald-500/10 text-emerald-100"
+                        ? "border border-amber-300/60 bg-amber-100/80 text-amber-900 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-100"
+                        : "border border-emerald-400/35 bg-emerald-500/8 text-emerald-800 dark:border-emerald-400/20 dark:bg-emerald-500/10 dark:text-emerald-100"
                     }`}
                   >
                     {asset.assetKind === "load_test" ? "LOAD TEST" : "UPLOADED"}
                   </span>
                 </div>
                 <div>
-                  <p className="line-clamp-2 text-sm font-medium text-white">
+                  <p className="line-clamp-2 text-sm font-medium text-stone-950 dark:text-white">
                     {asset.altText || "alt 텍스트 없음"}
                   </p>
                   <p className="mt-2 line-clamp-2 break-all text-xs leading-6 text-stone-400">
@@ -687,7 +687,7 @@ export function AdminAssetPicker({
                 <button
                   type="button"
                   onClick={() => onSelect(asset)}
-                  className="w-full self-end rounded-full border border-white/15 px-4 py-2 text-xs text-stone-100 transition hover:border-white/35"
+                  className="w-full self-end rounded-full border border-stone-300/70 bg-white px-4 py-2 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
                 >
                   {selectLabel}
                 </button>
@@ -696,7 +696,7 @@ export function AdminAssetPicker({
           ))}
         </div>
       ) : (
-        <div className="mt-4 rounded-2xl border border-dashed border-white/10 px-4 py-10 text-center text-sm text-stone-400">
+        <div className="mt-4 rounded-2xl border border-dashed border-stone-300/70 px-4 py-10 text-center text-sm text-stone-500 dark:border-white/10 dark:text-stone-400">
           {isLoading ? "자산을 불러오는 중입니다." : emptyCopy}
         </div>
       )}

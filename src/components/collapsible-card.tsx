@@ -15,8 +15,10 @@ type CollapsibleCardProps = {
 };
 
 const toneClassName = {
-  default: "border-white/10 bg-white/5",
-  warning: "border-amber-300/20 bg-amber-400/10",
+  default:
+    "border-stone-300/70 bg-white text-stone-900 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-white",
+  warning:
+    "border-amber-300/60 bg-white text-amber-950 shadow-sm dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-100",
 } as const;
 
 export function CollapsibleCard({
@@ -42,15 +44,17 @@ export function CollapsibleCard({
       >
         <div>
           {eyebrow ? (
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-stone-400">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-stone-500 dark:text-stone-400">
               {eyebrow}
             </p>
           ) : null}
-          <h3 className={`${eyebrow ? "mt-3" : ""} font-serif text-2xl text-white`}>
+          <h3
+            className={`${eyebrow ? "mt-3" : ""} font-serif text-2xl text-stone-950 dark:text-white`}
+          >
             {title}
           </h3>
           {description ? (
-            <div className="mt-3 text-sm leading-7 text-stone-400">
+            <div className="mt-3 text-sm leading-7 text-stone-600 dark:text-stone-400">
               {description}
             </div>
           ) : null}

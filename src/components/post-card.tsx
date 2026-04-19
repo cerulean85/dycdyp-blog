@@ -65,7 +65,7 @@ export function PostCard({
 
   return (
     <article
-      className={`flex flex-col overflow-hidden rounded-[2rem] border ${
+      className={`home-post-card home-post-card-${tone} flex flex-col overflow-hidden rounded-[2rem] border ${
         isSmall ? "h-[15.5rem]" : isCompact ? "h-[17rem]" : "min-h-[20rem]"
       } ${articleToneClassName} ${articleShadowClassName}`}
     >
@@ -99,7 +99,7 @@ export function PostCard({
         }`}
       >
         <div
-          className={`flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] ${
+          className={`post-card-meta flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] ${
             metaToneClassName
           } ${
             isSmall ? "mb-2" : isCompact ? "mb-3" : "mb-4"
@@ -110,7 +110,7 @@ export function PostCard({
           <span>{post.categoryLeaf}</span>
         </div>
         <h3
-          className={`font-serif leading-tight ${titleToneClassName} ${
+          className={`post-card-title font-serif leading-tight ${titleToneClassName} ${
             isSmall ? "text-[1.2rem]" : isCompact ? "text-[1.45rem]" : "text-2xl"
           }`}
         >
@@ -122,7 +122,7 @@ export function PostCard({
           </Link>
         </h3>
         <p
-          className={`line-clamp-3 ${excerptToneClassName} ${
+          className={`post-card-excerpt line-clamp-3 ${excerptToneClassName} ${
             isSmall
               ? "mt-1.5 line-clamp-2 text-[11px] leading-5"
               : isCompact
@@ -133,7 +133,7 @@ export function PostCard({
           {post.excerpt}
         </p>
         <div
-          className={`flex flex-wrap items-center gap-3 ${metaToneClassName} ${
+          className={`post-card-publish-meta flex flex-wrap items-center gap-3 ${metaToneClassName} ${
             isSmall ? "mt-3 text-[11px]" : isCompact ? "mt-4 text-[12px]" : "mt-5 text-sm"
           }`}
         >
@@ -149,7 +149,7 @@ export function PostCard({
             <Link
               key={tag}
               href={`/tags?tag=${encodeURIComponent(tag)}`}
-              className={`rounded-full ${chipToneClassName} ${
+              className={`post-card-chip rounded-full ${chipToneClassName} ${
                 isSmall
                   ? "px-2 py-1 text-[9px]"
                   : isCompact
@@ -162,7 +162,7 @@ export function PostCard({
           ))}
           {isReduced && post.tags.length > visibleTags.length ? (
             <span
-              className={`rounded-full ${overflowChipToneClassName} ${
+              className={`post-card-chip rounded-full ${overflowChipToneClassName} ${
                 isSmall ? "px-2 py-1 text-[9px]" : "px-2.5 py-1 text-[10px]"
               }`}
             >

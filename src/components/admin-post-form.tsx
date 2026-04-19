@@ -41,33 +41,33 @@ export function AdminPostForm({
         <CollapsibleCard id="basic-info" title="기본 정보">
           <div className="grid gap-4">
             <label className="block">
-              <span className="mb-2 block text-sm text-stone-300">제목</span>
+              <span className="mb-2 block text-sm text-stone-600 dark:text-stone-300">제목</span>
               <input
                 type="text"
                 name="title"
                 defaultValue={post.title}
                 required
-                className="admin-select w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300"
+                className="admin-select w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
               />
             </label>
             <label className="block">
-              <span className="mb-2 block text-sm text-stone-300">슬러그</span>
+              <span className="mb-2 block text-sm text-stone-600 dark:text-stone-300">슬러그</span>
               <input
                 type="text"
                 name="slug"
                 defaultValue={post.slug}
                 required
-                className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300"
+                className="w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
               />
             </label>
             <label className="block">
-              <span className="mb-2 block text-sm text-stone-300">요약</span>
+              <span className="mb-2 block text-sm text-stone-600 dark:text-stone-300">요약</span>
               <textarea
                 name="excerpt"
                 defaultValue={post.excerpt}
                 rows={4}
                 required
-                className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300"
+                className="w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
               />
             </label>
           </div>
@@ -95,11 +95,11 @@ export function AdminPostForm({
         <CollapsibleCard id="publish-settings" title="게시 설정">
           <div className="grid gap-4">
             <label className="block">
-              <span className="mb-2 block text-sm text-stone-300">카테고리</span>
+              <span className="mb-2 block text-sm text-stone-600 dark:text-stone-300">카테고리</span>
               <select
                 name="categoryPair"
                 defaultValue={`${post.categoryRoot}/${post.categoryLeaf}`}
-                className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300"
+                className="admin-select w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
               >
                 {categoryOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -108,10 +108,10 @@ export function AdminPostForm({
                 ))}
               </select>
             </label>
-            <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
-              <p className="text-sm text-stone-300">현재 상태</p>
+            <div className="rounded-2xl border border-stone-300/70 bg-white px-4 py-4 dark:border-white/10 dark:bg-black/20">
+              <p className="text-sm text-stone-600 dark:text-stone-300">현재 상태</p>
               <div className="mt-3 flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white">
+                <span className="rounded-full border border-stone-300/70 bg-white px-3 py-1 text-xs uppercase tracking-[0.2em] text-stone-700 dark:border-white/10 dark:bg-white/10 dark:text-white">
                   {post.status}
                 </span>
                 {post.approvedAt ? (
@@ -127,23 +127,23 @@ export function AdminPostForm({
               </div>
             </div>
             <label className="block">
-              <span className="mb-2 block text-sm text-stone-300">읽기 시간</span>
+              <span className="mb-2 block text-sm text-stone-600 dark:text-stone-300">읽기 시간</span>
               <input
                 type="number"
                 min="1"
                 name="readingTimeMinutes"
                 defaultValue={post.readingTimeMinutes}
                 required
-                className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300"
+                className="w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
               />
             </label>
             <label className="block">
-              <span className="mb-2 block text-sm text-stone-300">태그</span>
+              <span className="mb-2 block text-sm text-stone-600 dark:text-stone-300">태그</span>
               <input
                 type="text"
                 name="tags"
                 defaultValue={post.tags.join(", ")}
-                className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-amber-300"
+                className="w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
                 placeholder="태그1, 태그2, 태그3"
               />
             </label>
@@ -160,7 +160,7 @@ export function AdminPostForm({
           title="안내"
           tone="warning"
           description={
-            <span className="text-amber-100">
+            <span className="text-amber-900 dark:text-amber-100">
               현재 로그인 역할은 {role}입니다.
               <br />
               editor는 저장과 검토 요청까지, admin은 승인/게시/삭제/export까지
@@ -168,7 +168,7 @@ export function AdminPostForm({
             </span>
           }
         >
-          <div className="text-sm leading-7 text-amber-100">
+          <div className="text-sm leading-7 text-amber-900 dark:text-amber-100">
             현재 구조는 MVP 검증을 위한 운영 골격입니다. 실제 운영 전에는 권한
             체계, 승인 규칙, 감사 로그 정책을 함께 보강하는 것을 권장합니다.
           </div>

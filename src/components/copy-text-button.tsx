@@ -36,7 +36,7 @@ export function CopyTextButton({
       type="button"
       onClick={handleClick}
       disabled={!value}
-      className={`rounded-full border border-white/15 px-3 py-1.5 text-xs text-stone-200 transition hover:border-white/35 disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+      className={`rounded-full border border-stone-300/70 bg-white px-3 py-1.5 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:bg-transparent dark:text-stone-200 dark:hover:border-white/35 dark:hover:bg-white/5 ${className}`}
     >
       {copied ? copiedLabel : idleLabel}
     </button>

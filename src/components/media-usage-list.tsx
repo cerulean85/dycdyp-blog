@@ -34,7 +34,7 @@ export function MediaUsageList({
   return (
     <div className="mt-2">
       <ul
-        className={`divide-y divide-white/5 border-t border-white/5 text-sm text-stone-300 ${
+        className={`divide-y divide-stone-200 border-t border-stone-200 text-sm text-stone-700 dark:divide-white/5 dark:border-white/5 dark:text-stone-300 ${
           compact ? "" : "mt-1"
         }`}
       >
@@ -45,7 +45,7 @@ export function MediaUsageList({
                 href={post.href}
                 target="_blank"
                 rel="noreferrer"
-                className="block truncate transition hover:text-white"
+                className="block truncate transition hover:text-stone-950 dark:hover:text-white"
               >
                 {post.title}
               </a>
@@ -53,12 +53,12 @@ export function MediaUsageList({
             <div className="mt-1 flex items-center gap-2">
               <a
                 href={post.adminHref}
-                className="text-xs text-stone-500 transition hover:text-white"
+                className="text-xs text-stone-500 transition hover:text-stone-950 dark:hover:text-white"
               >
                 관리자에서 열기
               </a>
-              <span className="text-xs text-stone-600">·</span>
-              <span className="text-[11px] uppercase tracking-[0.16em] text-stone-500">
+              <span className="text-xs text-stone-400 dark:text-stone-600">·</span>
+              <span className="text-[11px] uppercase tracking-[0.16em] text-stone-500 dark:text-stone-500">
                 {post.status}
               </span>
             </div>
@@ -70,7 +70,7 @@ export function MediaUsageList({
         <button
           type="button"
           onClick={() => setIsExpanded((current) => !current)}
-          className="mt-3 inline-flex items-center gap-2 text-xs text-stone-500 transition hover:text-white"
+          className="mt-3 inline-flex items-center gap-2 text-xs text-stone-500 transition hover:text-stone-950 dark:hover:text-white"
         >
           <span>
             {isExpanded

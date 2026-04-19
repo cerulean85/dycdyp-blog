@@ -75,15 +75,15 @@ export function DeleteMediaAssetButton({
         onClick={() => void handleDelete()}
         disabled={Boolean(disabledReason) || isDeleting}
         title={disabledReason || undefined}
-        className="rounded-full border border-red-400/20 bg-red-500/10 px-3 py-1.5 text-xs text-red-100 transition hover:border-red-300/40 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-full border border-red-400/35 bg-red-500/8 px-3 py-1.5 text-xs text-red-700 transition hover:border-red-500/45 hover:bg-red-500/12 disabled:cursor-not-allowed disabled:opacity-50 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-100 dark:hover:border-red-300/40 dark:hover:bg-red-500/14"
       >
         {isDeleting ? "삭제 중..." : "자산 삭제"}
       </button>
       {showMessage && disabledReason ? (
-        <p className="text-xs leading-5 text-stone-500">{disabledReason}</p>
+        <p className="text-xs leading-5 text-stone-500 dark:text-stone-500">{disabledReason}</p>
       ) : null}
       {showMessage && error ? (
-        <p className="text-xs leading-5 text-red-300">{error}</p>
+        <p className="text-xs leading-5 text-red-600 dark:text-red-300">{error}</p>
       ) : null}
     </div>
   );

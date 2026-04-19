@@ -89,7 +89,7 @@ export function PostListItem({ post, highlightQuery }: PostListItemProps) {
               {matchReasons.map((reason) => (
                 <span
                   key={reason}
-                  className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] text-stone-600 md:text-xs"
+                  className="public-soft-panel rounded-full border px-2.5 py-1 text-[11px] text-stone-600 md:text-xs"
                 >
                   {reason}
                 </span>
@@ -106,7 +106,7 @@ export function PostListItem({ post, highlightQuery }: PostListItemProps) {
               <Link
                 key={tag}
                 href={`/tags?tag=${encodeURIComponent(tag)}`}
-                className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] text-stone-700 transition hover:bg-stone-200 md:px-3 md:text-xs"
+                className="public-soft-panel rounded-full border px-2.5 py-1 text-[11px] text-stone-700 transition hover:bg-stone-200 md:px-3 md:text-xs"
               >
                 #{highlightText(tag, highlightQuery)}
               </Link>

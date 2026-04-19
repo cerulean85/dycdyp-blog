@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import Giscus from "@giscus/react";
 
 type GiscusCommentsProps = {
@@ -13,7 +15,32 @@ const giscusConfig = {
   categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
 };
 
+function readResolvedTheme() {
+  if (typeof document === "undefined") {
+    return "light";
+  }
+
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+}
+
 export function GiscusComments({ term }: GiscusCommentsProps) {
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">(() =>
+    readResolvedTheme(),
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setResolvedTheme(readResolvedTheme());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   if (
     !giscusConfig.repo ||
     !giscusConfig.repoId ||
@@ -24,7 +51,7 @@ export function GiscusComments({ term }: GiscusCommentsProps) {
   }
 
   return (
-    <section className="mt-10 rounded-[1.75rem] border border-black/10 bg-white p-6 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.25)]">
+    <section className="public-panel mt-10 rounded-[1.75rem] border border-black/10 bg-white p-6 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.25)]">
       <p className="font-mono text-xs uppercase tracking-[0.3em] text-stone-500">
         Discussion
       </p>
@@ -34,6 +61,7 @@ export function GiscusComments({ term }: GiscusCommentsProps) {
       </p>
       <div className="mt-6">
         <Giscus
+          key={`giscus-${resolvedTheme}`}
           repo={giscusConfig.repo as `${string}/${string}`}
           repoId={giscusConfig.repoId}
           category={giscusConfig.category}
@@ -43,7 +71,7 @@ export function GiscusComments({ term }: GiscusCommentsProps) {
           reactionsEnabled="1"
           emitMetadata="0"
           inputPosition="top"
-          theme="light"
+          theme={resolvedTheme === "dark" ? "dark_dimmed" : "light"}
           lang="ko"
           loading="lazy"
         />

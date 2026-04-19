@@ -158,7 +158,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 <Link
                   key={tag}
                   href={`/tags?tag=${encodeURIComponent(tag)}`}
-                  className="rounded-full bg-stone-950 px-3 py-1 text-[11px] text-white md:text-xs"
+                  className="public-soft-panel rounded-full border px-3 py-1 text-[11px] text-stone-800 transition hover:bg-stone-200 md:text-xs"
                 >
                   #{tag}
                 </Link>

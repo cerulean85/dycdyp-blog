@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { AdminLogoutButton } from "@/components/admin-logout-button";
-import { BrandLogo } from "@/components/brand-logo";
 import { requireAdminSession } from "@/lib/admin-auth";
 
 export default async function AdminProtectedLayout({
@@ -12,17 +11,14 @@ export default async function AdminProtectedLayout({
   const session = await requireAdminSession();
 
   return (
-    <div className="min-h-screen bg-stone-950 text-stone-100">
+    <div className="admin-theme-shell min-h-screen bg-stone-950 text-stone-100">
       <header className="border-b border-white/10">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-4">
-            <BrandLogo href="/" mode="dark" compact showTagline={false} />
-            <div className="hidden border-l border-white/10 pl-4 lg:block">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-stone-400">
-                Admin
-              </p>
-              <h1 className="font-serif text-2xl">Editorial Console</h1>
-            </div>
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-stone-400">
+              Admin
+            </p>
+            <h1 className="font-serif text-2xl">Editorial Console</h1>
           </div>
           <div className="flex items-center gap-3 text-sm">
             <span className="rounded-full border border-white/15 px-3 py-1 text-xs uppercase tracking-[0.2em] text-stone-300">

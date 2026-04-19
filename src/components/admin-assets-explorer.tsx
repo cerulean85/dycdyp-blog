@@ -187,7 +187,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
 
   return (
     <>
-      <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
+      <div className="rounded-[1.75rem] border border-stone-300/70 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">
         <div className="flex flex-wrap gap-4">
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.2em] text-stone-500">종류</p>
@@ -211,8 +211,8 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                   }
                   className={`rounded-full border px-4 py-2 text-xs transition ${
                     kindFilter === option.key
-                      ? "border-amber-300/40 bg-amber-400/10 text-amber-100"
-                      : "border-white/10 bg-black/20 text-stone-300 hover:border-white/20"
+                      ? "border-amber-300/60 bg-amber-100/80 text-amber-900 dark:border-amber-300/40 dark:bg-amber-400/10 dark:text-amber-100"
+                      : "border-stone-300/70 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100 dark:border-white/10 dark:bg-black/20 dark:text-stone-300 dark:hover:border-white/20"
                   }`}
                 >
                   {option.label}
@@ -253,8 +253,8 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                   }
                   className={`rounded-full border px-4 py-2 text-xs transition ${
                     usageFilter === option.key
-                      ? "border-emerald-300/40 bg-emerald-500/10 text-emerald-100"
-                      : "border-white/10 bg-black/20 text-stone-300 hover:border-white/20"
+                      ? "border-emerald-400/35 bg-emerald-500/8 text-emerald-700 dark:border-emerald-300/40 dark:bg-emerald-500/10 dark:text-emerald-100"
+                      : "border-stone-300/70 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100 dark:border-white/10 dark:bg-black/20 dark:text-stone-300 dark:hover:border-white/20"
                   }`}
                 >
                   {option.label}
@@ -271,8 +271,8 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                 onClick={() => setMimeFilter("all")}
                 className={`rounded-full border px-4 py-2 text-xs transition ${
                   mimeFilter === "all"
-                    ? "border-sky-300/40 bg-sky-500/10 text-sky-100"
-                    : "border-white/10 bg-black/20 text-stone-300 hover:border-white/20"
+                    ? "border-sky-300/35 bg-sky-50 text-sky-700 dark:border-sky-300/40 dark:bg-sky-500/10 dark:text-sky-100"
+                    : "border-stone-300/70 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100 dark:border-white/10 dark:bg-black/20 dark:text-stone-300 dark:hover:border-white/20"
                 }`}
               >
                 전체
@@ -284,8 +284,8 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                   onClick={() => setMimeFilter(mime)}
                   className={`rounded-full border px-4 py-2 text-xs transition ${
                     mimeFilter === mime
-                      ? "border-sky-300/40 bg-sky-500/10 text-sky-100"
-                      : "border-white/10 bg-black/20 text-stone-300 hover:border-white/20"
+                      ? "border-sky-300/35 bg-sky-50 text-sky-700 dark:border-sky-300/40 dark:bg-sky-500/10 dark:text-sky-100"
+                      : "border-stone-300/70 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100 dark:border-white/10 dark:bg-black/20 dark:text-stone-300 dark:hover:border-white/20"
                   }`}
                 >
                   {mime}
@@ -295,14 +295,14 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
           </div>
         </div>
 
-        <p className="mt-4 text-sm text-stone-400">
-          현재 페이지 자산 <span className="text-white">{filteredAssets.length}</span>개를
+        <p className="mt-4 text-sm text-stone-500 dark:text-stone-400">
+          현재 페이지 자산 <span className="text-stone-950 dark:text-white">{filteredAssets.length}</span>개를
           빠르게 탐색 중입니다.
         </p>
       </div>
 
       {previewAsset ? (
-        <section className="max-w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5">
+        <section className="max-w-full overflow-hidden rounded-[1.75rem] border border-stone-300/70 bg-white shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">
           <button
             type="button"
             onClick={() => setIsPreviewOpen((current) => !current)}
@@ -313,15 +313,15 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
               <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
                 Asset Preview
               </p>
-              <p className="mt-2 text-sm text-white">
+              <p className="mt-2 text-sm text-stone-950 dark:text-white">
                 {previewAsset.altText || previewAsset.objectKey}
               </p>
             </div>
             <CollapseToggleChip isOpen={isPreviewOpen} />
           </button>
-          <div hidden={!isPreviewOpen} className="border-t border-white/10">
+          <div hidden={!isPreviewOpen} className="border-t border-stone-300/70 dark:border-white/10">
           <div className="grid max-w-full gap-0">
-            <div className="min-w-0 overflow-hidden bg-black/30">
+            <div className="min-w-0 overflow-hidden bg-stone-100 dark:bg-black/30">
               {previewAsset.publicUrl ? (
                 <button
                   type="button"
@@ -343,21 +343,21 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                 </div>
               )}
             </div>
-            <div className="min-w-0 max-w-full space-y-5 overflow-hidden border-t border-white/10 p-5">
+            <div className="min-w-0 max-w-full space-y-5 overflow-hidden border-t border-stone-300/70 p-5 dark:border-white/10">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-300">
+                <span className="rounded-full border border-stone-300/70 bg-white px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-700 dark:border-white/10 dark:bg-white/5 dark:text-stone-300">
                   {previewAsset.mimeType}
                 </span>
                 <span
                   className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.2em] ${
                     previewAsset.assetKind === "load_test"
-                      ? "border border-amber-300/20 bg-amber-400/10 text-amber-100"
-                      : "border border-emerald-400/20 bg-emerald-500/10 text-emerald-100"
+                      ? "border border-amber-300/60 bg-amber-100/80 text-amber-900 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-100"
+                      : "border border-emerald-400/35 bg-emerald-500/8 text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-500/10 dark:text-emerald-100"
                   }`}
                 >
                   {previewAsset.assetKind === "load_test" ? "LOAD TEST" : "UPLOADED"}
                 </span>
-                <span className="text-xs text-stone-400">{previewAsset.fileSize}</span>
+                <span className="text-xs text-stone-500 dark:text-stone-400">{previewAsset.fileSize}</span>
               </div>
 
               <div>
@@ -370,13 +370,13 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                     value={altTextDraft}
                     onChange={(event) => setAltTextDraft(event.target.value)}
                     placeholder="이미지 설명을 입력하세요"
-                    className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition focus:border-amber-300"
+                    className="w-full rounded-2xl border border-stone-300/70 bg-stone-100 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-amber-300 dark:border-white/10 dark:bg-black/20 dark:text-white"
                   />
                   <button
                     type="button"
                     onClick={() => void saveAltText()}
                     disabled={isSavingAltText}
-                    className="shrink-0 rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-stone-100 transition hover:border-white/35 hover:bg-white/5 disabled:cursor-wait disabled:opacity-60"
+                    className="shrink-0 rounded-2xl border border-stone-300/70 bg-white px-5 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 disabled:cursor-wait disabled:opacity-60 dark:border-white/15 dark:bg-transparent dark:text-stone-100 dark:hover:border-white/35 dark:hover:bg-white/5"
                   >
                     {isSavingAltText ? "저장 중..." : "저장"}
                   </button>
@@ -387,7 +387,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                 <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
                   Object Key
                 </p>
-                <p className="mt-2 break-all text-xs leading-6 text-stone-400">
+                <p className="mt-2 break-all text-xs leading-6 text-stone-500 dark:text-stone-400">
                   {previewAsset.objectKey}
                 </p>
               </div>
@@ -397,7 +397,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                   <dt className="text-xs uppercase tracking-[0.2em] text-stone-500">
                     업로더
                   </dt>
-                  <dd className="mt-2 text-sm text-stone-300">
+                  <dd className="mt-2 text-sm text-stone-700 dark:text-stone-300">
                     {previewAsset.uploaderDisplay || previewAsset.uploaderEmail}
                   </dd>
                 </div>
@@ -405,7 +405,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                   <dt className="text-xs uppercase tracking-[0.2em] text-stone-500">
                     업로드 시각
                   </dt>
-                  <dd className="mt-2 text-sm text-stone-300">
+                  <dd className="mt-2 text-sm text-stone-700 dark:text-stone-300">
                     {previewAsset.createdAt}
                   </dd>
                 </div>
@@ -413,7 +413,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                   <dt className="text-xs uppercase tracking-[0.2em] text-stone-500">
                     썸네일 사용
                   </dt>
-                  <dd className="mt-2 text-sm text-stone-300">
+                  <dd className="mt-2 text-sm text-stone-700 dark:text-stone-300">
                     {previewAsset.thumbnailUsageCount}건
                   </dd>
                 </div>
@@ -421,14 +421,14 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                   <dt className="text-xs uppercase tracking-[0.2em] text-stone-500">
                     본문 사용
                   </dt>
-                  <dd className="mt-2 text-sm text-stone-300">
+                  <dd className="mt-2 text-sm text-stone-700 dark:text-stone-300">
                     {previewAsset.bodyUsageCount}건
                   </dd>
                 </div>
               </dl>
 
               <div className="space-y-4">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <div className="rounded-2xl border border-stone-300/70 bg-white p-4 dark:border-white/10 dark:bg-black/20">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">
                     썸네일 사용 글
                   </p>
@@ -439,7 +439,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                     baseKey="preview-thumb"
                   />
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <div className="rounded-2xl border border-stone-300/70 bg-white p-4 dark:border-white/10 dark:bg-black/20">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">
                     본문 사용 글
                   </p>
@@ -452,11 +452,11 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <div className="rounded-2xl border border-stone-300/70 bg-white p-4 dark:border-white/10 dark:bg-black/20">
                 <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">
                   Markdown Snippet
                 </p>
-                <pre className="mt-2 whitespace-pre-wrap break-all font-mono text-xs leading-6 text-stone-300">
+                <pre className="mt-2 whitespace-pre-wrap break-all font-mono text-xs leading-6 text-stone-700 dark:text-stone-300">
                   {previewAsset.markdownSnippet ||
                     "공개 URL이 없어 Markdown 문법을 만들 수 없습니다."}
                 </pre>
@@ -484,7 +484,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                     href={previewAsset.publicUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-stone-200 transition hover:border-white/35"
+                    className="rounded-full border border-stone-300/70 bg-white px-3 py-1.5 text-xs text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 dark:border-white/15 dark:bg-transparent dark:text-stone-200 dark:hover:border-white/35 dark:hover:bg-white/5"
                   >
                     원본 보기
                   </a>
@@ -504,30 +504,30 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
                 </div>
                 {previewAsset.thumbnailUsageCount > 0 ||
                 previewAsset.bodyUsageCount > 0 ? (
-                  <p className="text-xs leading-5 text-stone-500">
+                  <p className="text-xs leading-5 text-stone-500 dark:text-stone-500">
                     사용처가 있어서 삭제할 수 없습니다. 썸네일 {previewAsset.thumbnailUsageCount}
                     건, 본문 {previewAsset.bodyUsageCount}건
                   </p>
                 ) : null}
               </div>
-              {error ? <p className="text-xs text-red-300">{error}</p> : null}
+              {error ? <p className="text-xs text-red-600 dark:text-red-300">{error}</p> : null}
             </div>
           </div>
           </div>
         </section>
       ) : (
-        <div className="rounded-[1.75rem] border border-dashed border-white/10 bg-white/5 px-5 py-10 text-center">
-          <p className="text-sm font-medium text-white">
+        <div className="rounded-[1.75rem] border border-dashed border-stone-300/70 bg-white px-5 py-10 text-center shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+          <p className="text-sm font-medium text-stone-950 dark:text-white">
             탐색기 필터와 일치하는 자산이 없습니다.
           </p>
-          <p className="mt-2 text-sm text-stone-400">
+          <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
             종류, 사용처, MIME 필터를 해제하면 현재 페이지 자산을 다시 볼 수 있습니다.
           </p>
           <div className="mt-4 flex justify-center">
             <button
               type="button"
               onClick={resetExplorerFilters}
-              className="rounded-full border border-white/15 px-4 py-2 text-sm text-stone-200 transition hover:border-white/35"
+              className="rounded-full border border-stone-300/70 bg-white px-4 py-2 text-sm text-stone-700 transition hover:border-stone-400 hover:bg-stone-100 dark:border-white/15 dark:bg-transparent dark:text-stone-200 dark:hover:border-white/35 dark:hover:bg-white/5"
             >
               탐색기 필터 해제
             </button>
@@ -550,11 +550,11 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
               }}
               className={`overflow-hidden rounded-[1.75rem] border text-left transition ${
                 isActive
-                  ? "border-amber-300/40 bg-amber-400/10"
-                  : "border-white/10 bg-white/5 hover:border-white/20"
+                  ? "border-amber-300/60 bg-white ring-1 ring-amber-300/20 dark:border-amber-300/40 dark:bg-amber-400/10"
+                  : "border-stone-300/70 bg-white hover:border-stone-400 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
               }`}
             >
-              <div className="aspect-[4/3] bg-black/30">
+              <div className="aspect-[4/3] bg-stone-100 dark:bg-black/30">
                 {asset.publicUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -570,28 +570,28 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
               </div>
               <div className="space-y-3 p-5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-300">
+                  <span className="rounded-full border border-stone-300/70 bg-white px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-stone-700 dark:border-white/10 dark:bg-white/5 dark:text-stone-300">
                     {asset.mimeType}
                   </span>
                   <span
                     className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.2em] ${
                       asset.assetKind === "load_test"
-                        ? "border border-amber-300/20 bg-amber-400/10 text-amber-100"
-                        : "border border-emerald-400/20 bg-emerald-500/10 text-emerald-100"
+                        ? "border border-amber-300/60 bg-amber-100/80 text-amber-900 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-100"
+                        : "border border-emerald-400/35 bg-emerald-500/8 text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-500/10 dark:text-emerald-100"
                     }`}
                   >
                     {asset.assetKind === "load_test" ? "LOAD TEST" : "UPLOADED"}
                   </span>
                 </div>
                 <div>
-                  <p className="font-medium text-white">
+                  <p className="font-medium text-stone-950 dark:text-white">
                     {asset.altText || "alt 텍스트 없음"}
                   </p>
-                  <p className="mt-2 line-clamp-2 break-all text-xs leading-6 text-stone-400">
+                  <p className="mt-2 line-clamp-2 break-all text-xs leading-6 text-stone-500 dark:text-stone-400">
                     {asset.objectKey}
                   </p>
                 </div>
-                <p className="text-sm text-stone-300">
+                <p className="text-sm text-stone-600 dark:text-stone-300">
                   썸네일 {asset.thumbnailUsageCount}건 · 본문 {asset.bodyUsageCount}건
                 </p>
               </div>
@@ -600,7 +600,7 @@ export function AdminAssetsExplorer({ items }: AdminAssetsExplorerProps) {
           })}
         </div>
       ) : (
-        <div className="rounded-[1.75rem] border border-dashed border-white/10 bg-black/20 px-5 py-12 text-center text-sm text-stone-400">
+        <div className="rounded-[1.75rem] border border-dashed border-stone-300/70 bg-white px-5 py-12 text-center text-sm text-stone-500 shadow-sm dark:border-white/10 dark:bg-black/20 dark:text-stone-400 dark:shadow-none">
           현재 빠른 필터 조건에 맞는 자산이 없습니다.
         </div>
       )}

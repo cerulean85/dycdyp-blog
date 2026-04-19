@@ -38,10 +38,10 @@ export default async function Home() {
   );
 
   return (
-    <div className="bg-[radial-gradient(circle_at_top_left,_rgba(28,25,23,0.08),_transparent_24%),linear-gradient(180deg,_#f3f0ea_0%,_#e9e4dc_100%)]">
+    <div className="home-page-shell bg-[radial-gradient(circle_at_top_left,_rgba(28,25,23,0.08),_transparent_24%),linear-gradient(180deg,_#f3f0ea_0%,_#e9e4dc_100%)]">
       <section className="mx-auto w-full max-w-6xl px-5 py-8 md:px-6 md:py-10 lg:py-12">
         {featuredPosts.length > 0 ? (
-          <div className="rounded-[2rem] border border-stone-500/50 bg-[linear-gradient(180deg,_rgba(86,80,74,0.98)_0%,_rgba(60,55,50,0.98)_100%)] p-5 shadow-[0_34px_90px_-42px_rgba(0,0,0,0.42)] md:rounded-[2.5rem] md:p-6 lg:p-8">
+          <div className="home-section home-section-featured rounded-[2rem] border border-stone-500/50 bg-[linear-gradient(180deg,_rgba(86,80,74,0.98)_0%,_rgba(60,55,50,0.98)_100%)] p-5 shadow-[0_34px_90px_-42px_rgba(0,0,0,0.42)] md:rounded-[2.5rem] md:p-6 lg:p-8">
             <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-5">
               <div>
                 <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.32em] text-stone-200/95">
@@ -72,7 +72,7 @@ export default async function Home() {
         ) : null}
 
         <div
-          className={`rounded-[2rem] border border-stone-300/65 bg-[linear-gradient(180deg,_rgba(214,208,200,0.98)_0%,_rgba(191,184,176,0.98)_100%)] px-5 py-5 shadow-[0_26px_70px_-46px_rgba(0,0,0,0.22)] md:rounded-[2.5rem] md:px-6 md:py-6 lg:px-8 ${
+          className={`home-section home-section-recent rounded-[2rem] border border-stone-300/65 bg-[linear-gradient(180deg,_rgba(214,208,200,0.98)_0%,_rgba(191,184,176,0.98)_100%)] px-5 py-5 shadow-[0_26px_70px_-46px_rgba(0,0,0,0.22)] md:rounded-[2.5rem] md:px-6 md:py-6 lg:px-8 ${
             featuredPosts.length > 0 ? "mt-8 md:mt-10" : ""
           }`}
         >
@@ -104,7 +104,7 @@ export default async function Home() {
             category.posts.length > 0 ? (
               <section
                 key={category.root}
-                className={`rounded-[2rem] border p-4 shadow-[0_18px_52px_-40px_rgba(0,0,0,0.22)] md:rounded-[2.25rem] md:p-5 lg:p-6 ${categorySectionStyles[category.root]}`}
+                className={`home-section home-section-category rounded-[2rem] border p-4 shadow-[0_18px_52px_-40px_rgba(0,0,0,0.22)] md:rounded-[2.25rem] md:p-5 lg:p-6 ${categorySectionStyles[category.root]}`}
               >
                 <div className="mb-1.5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between md:mb-2">
                   <div>
