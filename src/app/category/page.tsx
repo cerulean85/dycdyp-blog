@@ -7,7 +7,7 @@ import { categoryDefinitions } from "@/lib/content";
 import { getPostsByCategory } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "카테고리",
+  title: "DYCDYP",
   description:
     "투자, AI, 문화, 인문 카테고리별 공개 게시물을 탐색하고 태그와 아카이브로 다시 발견합니다.",
   alternates: {

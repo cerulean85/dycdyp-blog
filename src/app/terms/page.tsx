@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { SectionTitle } from "@/components/section-title";
 
 export const metadata: Metadata = {
-  title: "이용약관",
+  title: "DYCDYP",
   description:
     "DYCDYP 서비스 이용과 관련된 기본 조건, 책임 범위, 금지 행위를 안내합니다.",
   alternates: {

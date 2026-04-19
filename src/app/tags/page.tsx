@@ -12,7 +12,7 @@ type TagsPageProps = {
 };
 
 export const metadata: Metadata = {
-  title: "태그",
+  title: "DYCDYP",
   description: "dycdyp 공개 글의 태그별 탐색 페이지입니다.",
   alternates: {
     canonical: "/tags",

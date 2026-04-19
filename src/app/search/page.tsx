@@ -12,7 +12,7 @@ import {
 } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "검색",
+  title: "DYCDYP",
   description: "공개된 글 전체에서 키워드로 글을 검색합니다.",
   alternates: {
     canonical: "/search",

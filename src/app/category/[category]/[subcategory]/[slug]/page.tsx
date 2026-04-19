@@ -46,7 +46,7 @@ export async function generateMetadata({
   const ogImagePath = `${canonicalPath}/opengraph-image`;
 
   return {
-    title: post.title,
+    title: "DYCDYP",
     description: post.excerpt,
     alternates: {
       canonical: canonicalPath,

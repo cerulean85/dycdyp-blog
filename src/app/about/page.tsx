@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { SectionTitle } from "@/components/section-title";
 
 export const metadata: Metadata = {
-  title: "소개",
+  title: "DYCDYP",
   description:
     "기술과 자본, 인문학이 교차하는 지점에서 미래를 읽기 위한 CogFeed의 시선과 방향을 소개합니다.",
   alternates: {

@@ -52,7 +52,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${definition.label} · ${leaf.label}`,
+    title: "DYCDYP",
     description: `${definition.label} 카테고리 안에서 ${leaf.label}에 해당하는 공개 게시물입니다.`,
     alternates: {
       canonical: `/category/${definition.root}/${leaf.slug}`,

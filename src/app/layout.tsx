@@ -21,10 +21,7 @@ const serif = Noto_Serif_KR({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
-  title: {
-    default: `${siteConfig.name} | AI 보조형 편집 블로그`,
-    template: "%s | dycdyp",
-  },
+  title: "DYCDYP",
   description: siteConfig.description,
   applicationName: siteConfig.name,
   alternates: {

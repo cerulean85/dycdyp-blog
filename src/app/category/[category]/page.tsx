@@ -49,7 +49,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${definition.label} 카테고리`,
+    title: "DYCDYP",
     description: definition.description,
     alternates: {
       canonical: `/category/${definition.root}`,
